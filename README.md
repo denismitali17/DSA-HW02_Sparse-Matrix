@@ -67,6 +67,3 @@ The input file should contain:
 ### Limitations
 - Input files must be formatted correctly, or the script will throw errors.
 - Only non-zero elements are stored, so the matrices must be sparse for efficient storage.
-
-### License
-MIT License
