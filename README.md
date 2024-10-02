@@ -1,69 +1,111 @@
-# README
 
-## Sparse Matrix Operations Script
+# Sparse Matrix Operations
 
-### Overview
-This Python script performs operations on sparse matrices, which are matrices with mostly zero elements. The operations supported include addition, subtraction, and multiplication of two sparse matrices. The script reads matrices from input files, processes them into a sparse matrix format, performs the chosen operation, and outputs the result to an output file.
+## Introduction
 
-### Features
-- **Addition**: Add two sparse matrices.
-- **Subtraction**: Subtract one sparse matrix from another.
-- **Multiplication**: Multiply two sparse matrices.
-- **Transpose**: Automatically transposes the second matrix for multiplication if needed.
+This project implements a `SparseMatrix` class in Python that efficiently handles sparse matrices and supports matrix operations such as addition, subtraction, and multiplication. Sparse matrices are matrices where most of the elements are zero, and this implementation focuses on optimizing memory usage by only storing non-zero elements.
 
-### File Input Format
-The input file should contain:
-1. Dimensions of the matrix in the format:
-   ```
-   rows=<number_of_rows>
-   cols=<number_of_columns>
-   ```
-2. Matrix data in the format:
-   ```
-   (row, column, value)
-   ```
-   - Rows, columns, and values should be integers.
-   - Only non-zero values should be listed.
+## Features
 
-### How to Use the Script
+- **File-based Matrix Input**: Load matrices from text files where matrix dimensions and non-zero elements are specified.
+- **Sparse Matrix Representation**: Matrices are stored as dictionaries to save memory by only keeping track of non-zero elements.
+- **Matrix Operations**: Supports addition, subtraction, and multiplication of sparse matrices.
+- **File Output**: Results of matrix operations can be written to an output file.
 
-1. **Input Files**: Prepare two input files with sparse matrix data. Each file should be formatted as described above.
-2. **Run the Script**: Execute the script from the command line.
-   
-   ```bash
-   python script.py
-   ```
+## File Format
 
-3. **Follow Prompts**: 
-   - The script will ask you to enter the path of the first matrix file.
-   - It will then ask for the second matrix file (it allows you to enter the same file if desired).
-   - You will be asked to choose an operation: addition, subtraction, or multiplication.
-   - Finally, provide the path to the output file where results will be saved.
+The input matrix file should have the following format:
+
+- The first two lines specify the number of rows and columns in the matrix:
+  ```
+  rows=<number_of_rows>
+  cols=<number_of_cols>
+  ```
+- Non-zero matrix elements are provided in the form:
+  ```
+  (row, col, value)
+  ```
+  where:
+  - `row` is the row index (starting from 0).
+  - `col` is the column index (starting from 0).
+  - `value` is the integer value at that matrix position.
 
 
-### Functions Overview
+## Usage
 
-- **`UtilFunctions.ltrim(s)`**: Removes leading spaces or tabs from the string.
-- **`UtilFunctions.rtrim(s)`**: Removes trailing spaces, tabs, and newlines from the string.
-- **`UtilFunctions.trim(s)`**: Removes both leading and trailing spaces, tabs, and newlines from the string.
-- **`UtilFunctions.custom_append(lst, item)`**: Appends an item to a list.
-- **`UtilFunctions.str_to_int(s)`**: Converts a string to an integer, handling edge cases like negative numbers or invalid inputs.
-- **`UtilFunctions.mergeSort(array, begin, end)`**: Performs merge sort on a list.
-- **`SparseMatrix.insert(r, c, val)`**: Inserts a value into the sparse matrix at a specific position.
-- **`SparseMatrix.add(other)`**: Adds two sparse matrices.
-- **`SparseMatrix.subtract(other)`**: Subtracts one sparse matrix from another.
-- **`SparseMatrix.multiply(other)`**: Multiplies two sparse matrices.
-- **`SparseMatrix.transpose()`**: Transposes a matrix (swapping rows with columns).
-- **`process_input(input_path)`**: Processes the input file to create a sparse matrix.
-- **`output_results(output_path, results, r, c)`**: Writes the resulting matrix to an output file.
+### 1. Loading Matrices
 
-### Dependencies
+You can load a sparse matrix from a file by specifying the file path when initializing a `SparseMatrix` object:
+
+```python
+matrix1 = SparseMatrix(file_path="matrix1.txt")
+```
+
+### 2. Performing Matrix Operations
+
+The following operations are supported:
+
+- **Addition**: Add two matrices if they have the same dimensions.
+  ```python
+  result = matrix1 + matrix2
+  ```
+
+- **Subtraction**: Subtract one matrix from another if they have the same dimensions.
+  ```python
+  result = matrix1 - matrix2
+  ```
+
+- **Multiplication**: Multiply two matrices if the number of columns in the first matrix matches the number of rows in the second matrix.
+  ```python
+  result = matrix1 * matrix2
+  ```
+
+### 3. Writing Results to a File
+
+The result of an operation can be written to a file in the same format as the input:
+
+```python
+result.write_matrix_to_file("output_matrix.txt")
+```
+
+### 4. Command Line Interaction
+
+The program also supports command-line interaction. Upon execution, the user can input the file paths for the matrices and choose the operation to perform. The result will be saved to an output file.
+
+### Example Execution:
+
+```python
+Enter the path of the first matrix file: matrix1.txt
+Enter the path of the second matrix file: matrix2.txt
+Which operation would you like to perform?
+1. Add
+2. Subtract
+3. Multiply
+Enter your choice: 1
+Enter the path for the output file: result_matrix.txt
+```
+
+## Error Handling
+
+- **File Not Found**: If the input file is not found, a `FileNotFoundError` is raised.
+- **Invalid Format**: If the input file format is incorrect (e.g., missing parentheses, non-integer values), a `ValueError` is raised.
+- **Dimension Mismatch**: If the matrices are incompatible for the chosen operation (e.g., addition with mismatched dimensions or multiplication with incompatible row/column counts), a `ValueError` is raised.
+
+## Requirements
+
 - Python 3.x
 
-### Error Handling
-- The script checks for invalid matrix dimensions or positions when inserting values.
-- It raises exceptions when input files are incorrectly formatted or when matrix operations are not possible due to incompatible dimensions.
+## Running the Code
 
-### Limitations
-- Input files must be formatted correctly, or the script will throw errors.
-- Only non-zero elements are stored, so the matrices must be sparse for efficient storage.
+To run the program, execute the following command in a Python environment:
+
+```bash
+python sparse_matrix.py
+```
+
+Make sure to provide the appropriate input files and follow the prompts.
+
+## Example Files
+
+- `easy_sample_01_3.txt`: A sample sparse matrix file used for testing.
+- `easy_sample_02_1.txt`: Another sample sparse matrix file for testing matrix operations.
