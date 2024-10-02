@@ -103,9 +103,3 @@ To run the program, execute the following command in a Python environment:
 python sparse_matrix.py
 ```
 
-Make sure to provide the appropriate input files and follow the prompts.
-
-## Example Files
-
-- `easy_sample_01_3.txt`: A sample sparse matrix file used for testing.
-- `easy_sample_02_1.txt`: Another sample sparse matrix file for testing matrix operations.
