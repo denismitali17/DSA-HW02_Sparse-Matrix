@@ -94,12 +94,3 @@ Enter the path for the output file: result_matrix.txt
 ## Requirements
 
 - Python 3.x
-
-## Running the Code
-
-To run the program, execute the following command in a Python environment:
-
-```bash
-python sparse_matrix.py
-```
-
