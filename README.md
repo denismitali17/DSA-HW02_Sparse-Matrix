@@ -30,7 +30,6 @@ The input matrix file should have the following format:
   - `col` is the column index (starting from 0).
   - `value` is the integer value at that matrix position.
 
-
 ## Usage
 
 ### 1. Loading Matrices
@@ -94,3 +93,13 @@ Enter the path for the output file: result_matrix.txt
 ## Requirements
 
 - Python 3.x
+
+## Running the Code
+
+To run the program, execute the following command in a Python environment:
+
+```bash
+python sparse_matrix.py
+```
+
+Make sure to provide the appropriate input files and follow the prompts.
